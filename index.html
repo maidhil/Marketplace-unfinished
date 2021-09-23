@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        function includeHTML() {
+          var z, i, elmnt, file, xhttp;
+          /*loop through a collection of all HTML elements:*/
+          z = document.getElementsByTagName("*");
+          for (i = 0; i < z.length; i++) {
+            elmnt = z[i];
+            /*search for elements with a certain atrribute:*/
+            file = elmnt.getAttribute("html");
+            if (file) {
+              /*make an HTTP request using the attribute value as the file name:*/
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                  /*remove the attribute, and call this function once more:*/
+                  elmnt.removeAttribute("html");
+                  includeHTML();
+                }
+              }      
+              xhttp.open("GET", file, true);
+              xhttp.send();
+              /*exit the function:*/
+              return;
+            }
+          }
+        };
+        </script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- my css -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <title>Marketplace Website</title>
+  </head>
+  <body>
+      <div html="navbar.html"></div>
+          <!-- gambar slide awal -->
+    <section id="gambar-slider">
+      <div class="container w-50 h-50 mb-5">
+          <div class="row justify-content-center">
+              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                      <img src="img/gambar-besar-1.jpg" class="d-block w-100" alt="1">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h2>Formal wear for work</h2>
+                        <p>For your formal day</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <img src="img/gambar-besar-2.jpg" class="d-block w-100" alt="2">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h2>Fashionable casual wear</h2>
+                        <p>To look fashionable when hanging out</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000" >
+                      <img src="img/gambar-besar-3.jpg" class="d-block w-100" alt="3">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h2>Fashion untuk para wanita karir</h2>
+                        <p>karna mencari cowo yang banyak duit susah makanya berkarir</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- gambar slide akhir --> 
+      
+      <div html="galeri-baju.html"></div>
+
+    <!-- footer -->
+    <footer class="bg-secondary p-2 pb-1">
+        <address class="text-light">
+            Twitter, Inc.<br>
+            1355 Market St, Suite 900<br>
+            San Francisco, CA 94103<br>
+            P: (123) 456-7890<br>
+            Full Name<br>
+            first.last@example.com<br>
+        </address>
+        <div class="container text-white text-center">
+            <div class="copyright">
+                <p>All Right Reserved by Maidhil</p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+
+    <script>
+        includeHTML();
+    </script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
